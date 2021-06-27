@@ -1,0 +1,38 @@
+#home {
+  display: flex;
+  align-items: stretch;
+  height: 100vh;
+
+  aside {
+    flex: 7;
+  
+    background: #835AFD;
+    color: #FFF;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  
+    padding: 128px 80px;
+  }
+  
+  main {
+    flex: 8;
+  
+    padding: 0 32px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    align-items: stretch;
+    text-align: center;
+  }
+}
+
