@@ -20,14 +20,19 @@ export function Sidebar({children}: SidebarProps) {
     history.push('/requests');
   }
 
+  async function handleToCosts() {
+    history.push('/costs');
+  }
+
   return(
     <div id="home" >
       <aside>
         <img src={logo} alt="Logo"/>
-        <ul>
-          <button onClick={handleToClients}>Clientes</button>
-          <button onClick={handleToRequests}>Pedidos</button>
-        </ul>
+        <div className="list">
+          <span onClick={handleToClients}>Clientes</span>
+          <span onClick={handleToRequests}>Pedidos</span>
+          <span onClick={handleToCosts}>Custos</span>
+        </div>
       </aside>
       <main>
         <div className="main-content" >
