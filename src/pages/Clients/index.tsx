@@ -2,6 +2,6 @@
 export function Clients() {
 
   return(
-    <h1>Test Component Children</h1>
+    <h1>Clients</h1>
   );
 }
