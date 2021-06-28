@@ -29,15 +29,13 @@ export function Sidebar({children}: SidebarProps) {
       <aside>
         <img src={logo} alt="Logo"/>
         <div className="list">
-          <span onClick={handleToClients}>Clientes</span>
-          <span onClick={handleToRequests}>Pedidos</span>
-          <span onClick={handleToCosts}>Custos</span>
+          <b onClick={handleToClients}>Clientes</b>
+          <b onClick={handleToRequests}>Pedidos</b>
+          <b onClick={handleToCosts}>Custos</b>
         </div>
       </aside>
       <main>
-        <div className="main-content" >
           {children}
-        </div>
       </main>
     </div>
   );
