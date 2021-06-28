@@ -30,6 +30,7 @@ export function useTable({type}: TableProps) {
       { field: 'email', headerName: 'Email', width: 300}
     ];
     
+    // Realizar chamada no backend de clientes.
     rows = [
       { id: 1, cpf: '156.325.478-21', name: "Pedro de Assis", phone: '(31)985412369', email: "123DeOliveira4@email.com" },
       { id: 2, cpf: '156.325.478-22', name: "Pedro de Assis", phone: '(31)985412369', email: "123DeOliveira4@email.com" },
@@ -49,6 +50,7 @@ export function useTable({type}: TableProps) {
       { field: 'status', headerName: 'Status', width: 400 },
     ];
     
+    // Realizar chamada no backend de clientes.
     rows = [
       { id: 1, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
       { id: 2, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
