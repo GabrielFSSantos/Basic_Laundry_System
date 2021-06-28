@@ -10,7 +10,7 @@ export function Clients() {
   return(
     <div id="clients-page" >
       <header>
-        <h1>Painel Administrativo Clientes</h1>
+        <h1>Painel Administrativo</h1>
         <h2>Clientes</h2>
       </header>
 

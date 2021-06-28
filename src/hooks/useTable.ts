@@ -44,9 +44,9 @@ export function useTable({type}: TableProps) {
 
   } else if(type === 'requests') {
     columns = [
-      { field: 'requestNumber', headerName: 'Nª Pedido', width: 250 },
-      { field: 'name', headerName: 'Nome', width: 180 },
-      { field: 'status', headerName: 'Status', width: 180 },
+      { field: 'requestNumber', headerName: 'Nª Pedido', width: 400 },
+      { field: 'name', headerName: 'Nome', width: 400 },
+      { field: 'status', headerName: 'Status', width: 400 },
     ];
     
     rows = [
