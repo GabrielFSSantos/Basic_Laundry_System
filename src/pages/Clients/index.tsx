@@ -1,25 +1,14 @@
-import { useEffect, useState, FormEvent } from 'react';
+import { useState, FormEvent } from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 
-import { useTable } from '../../hooks/useTable';
+import { useTable, Rows } from '../../hooks/useTable';
 
 import './styles.scss'
-
-type Rows = { 
-  id: number;
-  cpf?: string;
-  name?: string;
-  phone?: string; 
-  email?: string;
-  requestNumber?: string;
-  status?: string;
-}
 
 export function Clients() {
   const { columns, rows } = useTable({type: 'clients'});
   const [searchQuery, setSearchQuery] = useState('');
   const [rowsFiltered, setRowsFiltered] = useState<Rows[]>(rows);
-  //let rowsFiltered = rows;
 
   function handleToSearch(event: FormEvent) {
     event.preventDefault();
@@ -37,14 +26,7 @@ export function Clients() {
         else return false;
       }));
     }
-
-    console.log('handleToSearch', searchQuery, rowsFiltered);
   }
-
-  useEffect(() => {
-    console.log('useEffect', searchQuery, rowsFiltered);
-  }, [rowsFiltered]);
-
 
   return(
     <div id="clients-page" >
@@ -61,7 +43,7 @@ export function Clients() {
           <form onSubmit={handleToSearch}>
             <input 
               type="text" 
-              placeholder="Pesquisar Cliente..." 
+              placeholder="Pesquise um cliente pelo nome..." 
               onChange={event => setSearchQuery(event.target.value)} value={searchQuery}
             />
             <button type="submit">Pesquisar</button>

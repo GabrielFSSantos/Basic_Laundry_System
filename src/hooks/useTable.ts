@@ -8,13 +8,13 @@ type Columns = {
   width: number
 }
 
-type Rows = { 
+export type Rows = { 
   id: number;
   cpf?: string;
   name?: string;
   phone?: string; 
   email?: string;
-  requestNumber?: string;
+  requestCode?: string;
   status?: string;
 }
 
@@ -44,21 +44,21 @@ export function useTable({type}: TableProps) {
 
   } else if(type === 'requests') {
     columns = [
-      { field: 'requestNumber', headerName: 'Nª Pedido', width: 400 },
+      { field: 'requestCode', headerName: 'Código', width: 400 },
       { field: 'name', headerName: 'Nome', width: 400 },
       { field: 'status', headerName: 'Status', width: 400 },
     ];
     
     rows = [
-      { id: 1, requestNumber: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-      { id: 2, requestNumber: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-      { id: 3, requestNumber: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-      { id: 4, requestNumber: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-      { id: 5, requestNumber: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-      { id: 6, requestNumber: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-      { id: 7, requestNumber: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-      { id: 8, requestNumber: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-      { id: 9, requestNumber: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
+      { id: 1, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
+      { id: 2, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
+      { id: 3, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
+      { id: 4, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
+      { id: 5, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
+      { id: 6, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
+      { id: 7, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
+      { id: 8, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
+      { id: 9, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
     ]; 
   }
 
