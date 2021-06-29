@@ -9,5 +9,15 @@
       margin-top: 24px;
     }
   }
+
+  .separator {  
+    display: flex;
+    align-items: center;
+
+    height: 2px;
+    background: #047F9F;
+
+    margin: 32px 64px;
+  }
 }
 

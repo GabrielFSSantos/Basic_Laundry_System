@@ -1,3 +1,4 @@
+import { useHistory } from 'react-router-dom';
 import { useState, FormEvent } from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 
@@ -8,9 +9,14 @@ import { useTable, Rows } from '../../hooks/useTable';
 import './styles.scss'
 
 export function Requests() {
+  const history = useHistory();
   const { columns, rows } = useTable({type: 'requests'});
   const [searchQuery, setSearchQuery] = useState('');
   const [rowsFiltered, setRowsFiltered] = useState<Rows[]>(rows);
+
+  async function handleToNewRequest() {
+    history.push('/new/request');
+  }
 
   function handleToSearch(event: FormEvent) {
     event.preventDefault();
@@ -36,7 +42,7 @@ export function Requests() {
       
       <main>
         <div className="section">
-          <Button isOutlined>+<b>Novo Pedido</b></Button>
+          <Button onClick={handleToNewRequest} isOutlined>+<b>Novo Pedido</b></Button>
           <form onSubmit={handleToSearch}>
             <input 
               type="text" 
