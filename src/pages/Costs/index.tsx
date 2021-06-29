@@ -1,4 +1,5 @@
 import { FormEvent, useState } from 'react';
+import { Button } from '../../components/Button';
 
 import { Header } from '../../components/Header';
 import {CalculateCosts} from '../../service/shared/CalculateCosts';
@@ -80,7 +81,7 @@ export function Costs() {
                 placeholder="Digite o valor da lavagem por Kg..."
                 onChange={event => setWashValue(parseFloat(event.target.value))} 
               />
-              <button type="submit">Calcular</button>
+              <Button isOutlined type="submit">Calcular</Button>
             </div>
           </form>
           
@@ -104,7 +105,7 @@ export function Costs() {
             </div>
           </div>
         </div>
-        <button onClick={handleSaveEditions}>Salvar alterações</button>
+        <Button onClick={handleSaveEditions}>Salvar alterações</Button>
       </main>
     </div>
   );

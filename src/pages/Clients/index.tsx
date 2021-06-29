@@ -2,6 +2,7 @@ import { useState, FormEvent } from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 
 import { Header } from '../../components/Header';
+import { Button } from '../../components/Button';
 import { useTable, Rows } from '../../hooks/useTable';
 
 import './styles.scss'
@@ -35,14 +36,14 @@ export function Clients() {
 
       <main>
         <div className="section">
-          <button>+<b>Novo Cliente</b></button>
+          <Button isOutlined>+<b>Novo Cliente</b></Button>
           <form onSubmit={handleToSearch}>
             <input 
               type="text" 
               placeholder="Pesquise um cliente pelo nome..." 
               onChange={event => setSearchQuery(event.target.value)} value={searchQuery}
             />
-            <button type="submit">Pesquisar</button>
+            <Button type="submit">Pesquisar</Button>
           </form>
         </div>
         
