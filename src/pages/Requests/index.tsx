@@ -1,6 +1,7 @@
 import { useState, FormEvent } from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 
+import { Header } from '../../components/Header';
 import { useTable, Rows } from '../../hooks/useTable';
 
 import './styles.scss'
@@ -30,12 +31,7 @@ export function Requests() {
 
   return(
     <div id="requests-page" >
-      <header>
-        <h1>Painel Administrativo</h1>
-        <h2>Pedidos</h2>
-      </header>
-
-      <div className="separator" ></div>
+      <Header title="Pedidos"/>
       
       <main>
         <div className="section">

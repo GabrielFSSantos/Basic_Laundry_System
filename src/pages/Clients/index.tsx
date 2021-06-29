@@ -1,6 +1,7 @@
 import { useState, FormEvent } from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 
+import { Header } from '../../components/Header';
 import { useTable, Rows } from '../../hooks/useTable';
 
 import './styles.scss'
@@ -30,13 +31,8 @@ export function Clients() {
 
   return(
     <div id="clients-page" >
-      <header>
-        <h1>Painel Administrativo</h1>
-        <h2>Clientes</h2>
-      </header>
+      <Header title="Clientes"/>
 
-      <div className="separator" ></div>
-      
       <main>
         <div className="section">
           <button>+<b>Novo Cliente</b></button>

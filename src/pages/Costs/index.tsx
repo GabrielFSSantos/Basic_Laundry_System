@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
 
+import { Header } from '../../components/Header';
 import {CalculateCosts} from '../../service/shared/CalculateCosts';
 
 import './styles.scss'
@@ -52,12 +53,7 @@ export function Costs() {
 
   return(
     <div id="costs-page" >
-      <header>
-        <h1>Painel Administrativo</h1>
-        <h2>Custos <b>(por kg)</b></h2> 
-      </header>
-
-      <div className="separator" ></div>
+      <Header title="Custos"/>
       
       <main>
         <div className="board">
