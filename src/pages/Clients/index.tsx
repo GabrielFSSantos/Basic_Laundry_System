@@ -44,7 +44,7 @@ export function Clients() {
     }
 
     let names = '';
-    rowsSelected.map(e => {
+    rowsSelected.forEach(e => {
       names = names + e.name + ', ';
     })
     alert('Deseja excluir os clientes '+ names + '?');
