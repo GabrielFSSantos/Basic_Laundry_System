@@ -1,3 +1,5 @@
+import { clients } from '../data/data.json';
+
 export default {
   async create() {
     try {
@@ -9,7 +11,10 @@ export default {
 
   async read() {
     try {
-
+      const dados = clients;
+      if(dados) {
+        return dados;
+      }
     } catch (error) {
       alert("Could not list.\n" + error);
     }

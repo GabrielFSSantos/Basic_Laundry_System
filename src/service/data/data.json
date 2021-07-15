@@ -1,0 +1,25 @@
+{
+  "clients": [
+    { "id": "1", "cpf": "156.325.478-21", "name": "Pedro 1", "phone": "(31)985412369", "email": "123DeOliveira4@email.com" },
+    { "id": "2", "cpf": "156.325.478-22", "name": "Pedro 2", "phone": "(31)985412369", "email": "123DeOliveira4@email.com" },
+    { "id": "3", "cpf": "156.325.478-23", "name": "Pedro 3", "phone": "(31)985412369", "email": "123DeOliveira4@email.com" },
+    { "id": "4", "cpf": "156.325.478-24", "name": "Pedro 4", "phone": "(31)985412369", "email": "123DeOliveira4@email.com" },
+    { "id": "5", "cpf": "156.325.478-25", "name": "Pedro 5", "phone": "(31)985412369", "email": "123DeOliveira4@email.com" },
+    { "id": "6", "cpf": "156.325.478-26", "name": "Pedro 6", "phone": "(31)985412369", "email": "123DeOliveira4@email.com" },
+    { "id": "7", "cpf": "156.325.478-27", "name": "Pedro 7", "phone": "(31)985412369", "email": "123DeOliveira4@email.com" },
+    { "id": "8", "cpf": "156.325.478-28", "name": "Pedro 8", "phone": "(31)985412369", "email": "123DeOliveira4@email.com" },
+    { "id": "9", "cpf": "156.325.478-29", "name": "Pedro 9", "phone": "(31)985412369", "email": "123DeOliveira4@email.com" }
+  ],
+
+  "requests": [
+    { "id": "1", "requestCode": "FGH2549", "name": "Pedro 1", "status": "Lavando"},
+    { "id": "2", "requestCode": "FGH2549", "name": "Pedro 2", "status": "Lavando"},
+    { "id": "3", "requestCode": "FGH2549", "name": "Pedro 3", "status": "Lavando"},
+    { "id": "4", "requestCode": "FGH2549", "name": "Pedro 4", "status": "Lavando"},
+    { "id": "5", "requestCode": "FGH2549", "name": "Pedro 5", "status": "Lavando"},
+    { "id": "6", "requestCode": "FGH2549", "name": "Pedro 6", "status": "Lavando"},
+    { "id": "7", "requestCode": "FGH2549", "name": "Pedro 7", "status": "Lavando"},
+    { "id": "8", "requestCode": "FGH2549", "name": "Pedro 8", "status": "Lavando"},
+    { "id": "9", "requestCode": "FGH2549", "name": "Pedro 9", "status": "Lavando"}
+  ]
+}

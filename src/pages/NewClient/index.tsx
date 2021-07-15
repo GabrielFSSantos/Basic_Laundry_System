@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
-import { Client } from '../../service/models/Client';
 
 import './styles.scss'
 
@@ -9,6 +8,7 @@ export function NewClient() {
   const [name, setName] = useState('');
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [cep, setCep] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
@@ -18,10 +18,11 @@ export function NewClient() {
   const [complement, setComplement] = useState('');
 
   function handleRegisterClient(){
-    const client: Client = {
+    const client = {
       name,
       cpf,
       email,
+      phone,
       cep,
       city,
       state,
@@ -63,6 +64,12 @@ export function NewClient() {
                   type="text" 
                   placeholder="Digite o CPF do cliente..."
                   onChange={event => setCpf(event.target.value)} 
+                />
+                <b>Telefone</b>
+                <input 
+                  type="text" 
+                  placeholder="Digite o telefone do cliente..."
+                  onChange={event => setPhone(event.target.value)} 
                 />
               </div>
             </div>
