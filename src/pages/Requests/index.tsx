@@ -4,7 +4,7 @@ import { DataGrid } from '@material-ui/data-grid';
 
 import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';
-import { useTable, Rows } from '../../hooks/useTable';
+import { useTable, Row } from '../../hooks/useTable';
 
 import './styles.scss'
 
@@ -12,7 +12,7 @@ export function Requests() {
   const history = useHistory();
   const { columns, rows } = useTable({type: 'requests'});
   const [searchQuery, setSearchQuery] = useState('');
-  const [rowsFiltered, setRowsFiltered] = useState<Rows[]>(rows);
+  const [rowsFiltered, setRowsFiltered] = useState<Row[]>(rows);
 
   async function handleToNewRequest() {
     history.push('/new/request');

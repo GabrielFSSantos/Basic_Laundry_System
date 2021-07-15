@@ -1,10 +1,10 @@
 import { useState, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
-import { DataGrid } from '@material-ui/data-grid';
+import { DataGrid, GridSelectionModelChangeParams } from '@material-ui/data-grid';
 
 import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';
-import { useTable, Rows } from '../../hooks/useTable';
+import { useTable, Row } from '../../hooks/useTable';
 
 import './styles.scss'
 
@@ -12,10 +12,42 @@ export function Clients() {
   const history = useHistory();
   const { columns, rows } = useTable({type: 'clients'});
   const [searchQuery, setSearchQuery] = useState('');
-  const [rowsFiltered, setRowsFiltered] = useState<Rows[]>(rows);
+  const [rowsFiltered, setRowsFiltered] = useState<Row[]>(rows);
+  const [rowsSelected, setRowsSelected] = useState<Row[]>([]);
 
   async function handleToNewClient() {
     history.push('/new/client');
+  }
+
+  async function handleToSelectedClient(elements: GridSelectionModelChangeParams) {
+    const s = new Set(elements.selectionModel);
+    setRowsSelected(rows.filter(e => s.has(e.id)));
+  }
+  
+  async function handleToEditClient() {
+    if(rowsSelected.length > 1){
+      alert("Não é possível editar mais de um cliente por vez.");
+      return
+    }
+    if(rowsSelected.length < 1){
+      alert("Selecione um cliente para editar.");
+      return
+    }
+
+    console.log(rowsSelected);
+  }
+
+  async function handleToRemoveClient() {
+    if(rowsSelected.length < 1){
+      alert("Selecione um ou mais clientes para excluir.");
+      return
+    }
+
+    let names = '';
+    rowsSelected.map(e => {
+      names = names + e.name + ', ';
+    })
+    alert('Deseja excluir os clientes '+ names + '?');
   }
 
   function handleToSearch(event: FormEvent) {
@@ -42,7 +74,11 @@ export function Clients() {
 
       <main>
         <div className="section">
-          <Button onClick={handleToNewClient} isOutlined>+<b>Novo Cliente</b></Button>
+          <div>
+            <Button onClick={handleToNewClient} isOutlined>✛<b>Novo Cliente</b></Button>
+            <Button onClick={handleToEditClient} isOutlined>✎<b>Editar Cliente</b></Button>
+            <Button onClick={handleToRemoveClient} isOutlined>✕<b>Excluir Cliente</b></Button>
+          </div>
           <form onSubmit={handleToSearch}>
             <input 
               type="text" 
@@ -54,7 +90,7 @@ export function Clients() {
         </div>
         
         <div className="table">
-          <DataGrid rows={rowsFiltered} columns={columns} pageSize={9} checkboxSelection />
+          <DataGrid rows={rowsFiltered} columns={columns} pageSize={9} checkboxSelection onSelectionModelChange={e => handleToSelectedClient(e)}/>
         </div>
       </main>
     </div>

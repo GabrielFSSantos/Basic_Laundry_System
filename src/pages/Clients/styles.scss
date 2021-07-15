@@ -12,6 +12,11 @@
       width: 100%;
       gap: 16px;
 
+      div {
+        display: flex;
+        gap: 16px;
+      }
+
       form {
         display: flex;
         align-items: center;

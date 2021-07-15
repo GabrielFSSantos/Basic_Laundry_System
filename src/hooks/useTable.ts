@@ -8,7 +8,7 @@ type Columns = {
   width: number
 }
 
-export type Rows = { 
+export type Row = { 
   id: number;
   cpf?: string;
   name?: string;
@@ -20,7 +20,7 @@ export type Rows = {
 
 export function useTable({type}: TableProps) {
   let columns: Columns[] = [];
-  let rows: Rows[] = [];
+  let rows: Row[] = [];
 
   if(type === 'clients') {
     columns = [
