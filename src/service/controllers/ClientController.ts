@@ -1,18 +1,37 @@
+import { Client } from '../models/Client';
 import { clients } from '../data/data.json';
 
 export default {
-  async create() {
+  async create(client: Client) {
     try {
-      
+      const storage = localStorage.getItem('clients');
+      if(storage){
+        const dados: Client[] = JSON.parse(storage);
+
+        if(dados.find((e) => e.cpf === client.cpf)){
+          alert("error Administrator Exists");
+          return
+        }
+
+        dados.push(client);
+        localStorage.setItem('clients', JSON.stringify(dados));
+        return client;
+      }
     }catch (error) {
       alert("error Administrator Exists");
-    }
+   }
   },
 
   async read() {
     try {
-      const dados = clients;
-      if(dados) {
+      const storage = localStorage.getItem('clients');
+      if(storage){
+        const dados: Client[] = JSON.parse(storage);
+        return dados;
+      }
+      else {
+        localStorage.setItem('clients', JSON.stringify(clients));
+        const dados: Client[] = JSON.parse(JSON.stringify(clients));
         return dados;
       }
     } catch (error) {

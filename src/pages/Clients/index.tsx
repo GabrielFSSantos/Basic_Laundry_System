@@ -46,7 +46,7 @@ export function Clients() {
     rowsSelected.forEach(e => {
       names = names + e.name + ', ';
     })
-    alert('Deseja excluir os clientes '+ names + '?');
+    alert('Deseja excluir o(s) cliente(s) '+ names + '?');
   }
 
   return(
@@ -70,7 +70,7 @@ export function Clients() {
         </div>
         
         <div className="table">
-          <DataGrid rows={rowsClient} columns={columns} pageSize={9} checkboxSelection onSelectionModelChange={e => handleToSelectedClient(e)}/>
+          <DataGrid rows={rowsClient} columns={columns} pageSize={8} checkboxSelection onSelectionModelChange={e => handleToSelectedClient(e)}/>
         </div>
       </main>
     </div>

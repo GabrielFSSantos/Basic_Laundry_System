@@ -43,7 +43,6 @@ export function useTable({type, search}: TableProps) {
 
   useEffect(() => {
     if(type === 'clients') {
-
       setColumns([
         { field: 'name', headerName: 'Nome', width: 300 },
         { field: 'cpf', headerName: 'CPF', width: 250 },

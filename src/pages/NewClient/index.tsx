@@ -1,10 +1,18 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
+
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
+
+import { Client } from '../../service/models/Client';
+import ClientController from '../../service/controllers/ClientController';
 
 import './styles.scss'
 
 export function NewClient() {
+  const history = useHistory();
+
   const [name, setName] = useState('');
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
@@ -18,7 +26,14 @@ export function NewClient() {
   const [complement, setComplement] = useState('');
 
   function handleRegisterClient(){
-    const client = {
+    
+    if(name !== '' && cpf !== '' && email !== '' && 
+      phone !== '' && cep !== '' && city !== '' && 
+      state !== '' && street !== '' && number !== null && 
+      district !== '' && complement !== '') {
+        
+      const client: Client = {
+      id: uuid(),
       name,
       cpf,
       email,
@@ -30,9 +45,16 @@ export function NewClient() {
       number,
       district,
       complement
-    }
+      }
 
-    console.log(client);
+      ClientController.create(client).then((dados) => {
+        alert("Cliente "+dados?.name+" cadastrado com sucesso!!!");
+        history.push('/clients');
+      });
+    }
+    else{
+      alert("Preencha todos os campos");
+    }
   }
 
   return(

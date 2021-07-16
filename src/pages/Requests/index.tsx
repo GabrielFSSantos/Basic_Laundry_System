@@ -54,7 +54,7 @@ export function Requests() {
         </div>
         
         <div className="table">
-          <DataGrid rows={rowsFiltered} columns={columns} pageSize={9} checkboxSelection />
+          <DataGrid rows={rowsRequest} columns={columns} pageSize={9} checkboxSelection />
         </div>
       </main>
     </div>
