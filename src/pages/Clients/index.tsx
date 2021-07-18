@@ -6,6 +6,8 @@ import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';
 import { useTable, RowClient } from '../../hooks/useTable';
 
+import ClientController from '../../service/controllers/ClientController';
+
 import './styles.scss'
 
 export function Clients() {
@@ -46,7 +48,14 @@ export function Clients() {
     rowsSelected.forEach(e => {
       names = names + e.name + ', ';
     })
-    alert('Deseja excluir o(s) cliente(s) '+ names + '?');
+
+    if(window.confirm('Deseja excluir o(s) cliente(s) '+ names + '?')) {
+      ClientController.delete(rowsSelected).then(() => {
+        alert("Clientes excluídos com sucesso!!!");
+        setSearchQuery(' ');
+        setSearchQuery('');
+      });
+    }
   }
 
   return(

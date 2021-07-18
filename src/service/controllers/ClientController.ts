@@ -16,7 +16,7 @@ export default {
       }
 
       if(dados.find((e) => e.cpf === client.cpf)){
-        alert("error Administrator Exists");
+        alert("error Client Exists");
         return
       }
 
@@ -25,7 +25,7 @@ export default {
       return client;
       
     }catch (error) {
-      alert("error Administrator Exists");
+      alert("error Client Exists");
    }
   },
 
@@ -59,15 +59,15 @@ export default {
         dados = JSON.parse(JSON.stringify(clients));
       }
 
-      const elem = dados.findIndex((e) => e.id === client.id);
+      const index = dados.findIndex((e) => e.id === client.id);
 
-      if(elem){
-        dados[elem] = client;
+      if(index >= 0){
+        dados[index] = client;
         localStorage.setItem('clients', JSON.stringify(dados));
         return client;
       }
       else {
-        alert("error Administrator Exists");
+        alert("error Client Exists");
         return
       }
       
@@ -76,9 +76,29 @@ export default {
     }
   },
   
-  async delete() {
+  async delete(elements: {id: string}[]) {
     try {
+      let dados: Client[] = [];
+      const storage = localStorage.getItem('clients');
 
+      if(storage){
+        dados = JSON.parse(storage);
+      }
+      else {
+        localStorage.setItem('clients', JSON.stringify(clients));
+        dados = JSON.parse(JSON.stringify(clients));
+      }
+
+      elements.map((element) => {
+        const index = dados.findIndex((e) => e.id === element.id);
+        if(index >= 0){
+          dados.splice(index, 1);
+          localStorage.setItem('clients', JSON.stringify(dados));
+        }
+        else {
+          alert(`error Client ${index} no exists!`);
+        }
+      });
     } catch (error) {
       alert("don't was not possible to delete.\n" + error);
     }
@@ -103,7 +123,7 @@ export default {
         return client;
       }
       else{
-        alert("error Administrator Exists");
+        alert("error Client Exists");
         return
       }
     } catch (error) {
