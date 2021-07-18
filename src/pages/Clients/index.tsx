@@ -33,7 +33,7 @@ export function Clients() {
       return
     }
 
-    console.log(rowsSelected[0]);
+    history.push(`/edit/client/${rowsSelected[0].id}`);
   }
 
   async function handleToRemoveClient() {
