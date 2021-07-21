@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import ClientController from '../service/controllers/ClientController';
+import RequestController from '../service/controllers/RequestController';
 
 type TableProps = {
   type: string;
@@ -30,9 +31,11 @@ export type RowClient = {
 }
 
 export type RowRequest = { 
-  id: number;
+  id: string;
   name?: string;
-  requestCode?: string;
+  weight?: string;
+  price?: string;
+  isPaid?: boolean;
   status?: string;
 }
 
@@ -65,22 +68,27 @@ export function useTable({type, search}: TableProps) {
     } 
     else if(type === 'requests') {
       setColumns([
-        { field: 'requestCode', headerName: 'Código', width: 400 },
-        { field: 'name', headerName: 'Nome', width: 400 },
-        { field: 'status', headerName: 'Status', width: 400 },
+        { field: 'id', headerName: 'Código', width: 200 },
+        { field: 'name', headerName: 'Nome', width: 200 },
+        { field: 'weight', headerName: 'Peso', width: 200 },
+        { field: 'price', headerName: 'Preço', width: 200 },
+        { field: 'isPaid', headerName: 'Pago', width: 200 },
+        { field: 'status', headerName: 'Status', width: 200 },
       ]);
       
-      setRowsRequest([
-        { id: 1, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-        { id: 2, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-        { id: 3, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-        { id: 4, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-        { id: 5, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-        { id: 6, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-        { id: 7, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-        { id: 8, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-        { id: 9, requestCode: 'FGH2549', name: "Pedro de Assis", status: 'Lavando'},
-      ]); 
+      RequestController.read().then((requests) => { if(requests){
+        if(search.trim() === '') {
+          setRowsRequest(requests);
+        }
+        else {
+          setRowsRequest(requests.filter((request) => {
+            if(request.name){
+              return request.name.includes(search);
+            }
+            else return false;
+          }));
+        }
+      }});
     }
   }, [type, search]);
 

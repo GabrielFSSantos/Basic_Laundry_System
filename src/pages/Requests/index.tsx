@@ -1,10 +1,12 @@
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useState, FormEvent } from 'react';
-import { DataGrid } from '@material-ui/data-grid';
+import { DataGrid, GridSelectionModelChangeParams } from '@material-ui/data-grid';
 
 import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';
 import { useTable, RowRequest } from '../../hooks/useTable';
+
+import RequestController from '../../service/controllers/RequestController';
 
 import './styles.scss'
 
@@ -12,27 +14,47 @@ export function Requests() {
   const history = useHistory();
   const [searchQuery, setSearchQuery] = useState('');
   const { columns, rowsRequest } = useTable({type: 'requests', search: searchQuery});
-  const [rowsFiltered, setRowsFiltered] = useState<RowRequest[]>(rowsRequest);
+  const [rowsSelected, setRowsSelected] = useState<RowRequest[]>([]);
 
   async function handleToNewRequest() {
     history.push('/new/request');
   }
 
-  function handleToSearch(event: FormEvent) {
-    event.preventDefault();
-    
-    setRowsFiltered([]);
-
-    if(searchQuery.trim() === '') {
-      setRowsFiltered(rowsRequest);
+  async function handleToSelectedRequest(elements: GridSelectionModelChangeParams) {
+    const selected = new Set(elements.selectionModel);
+    setRowsSelected(rowsRequest.filter((request: RowRequest) => selected.has(request.id)));
+  }
+  
+  async function handleToEditRequest() {
+    if(rowsSelected.length > 1){
+      alert("Não é possível editar mais de um pedido por vez.");
+      return
     }
-    else {
-      setRowsFiltered(rowsRequest.filter((request: RowRequest) => {
-        if(request.requestCode){
-         return request.requestCode.includes(searchQuery);
-        }
-        else return false;
-      }));
+    if(rowsSelected.length < 1){
+      alert("Selecione um pedido para editar.");
+      return
+    }
+
+    history.push(`/edit/request/${rowsSelected[0].id}`);
+  }
+
+  async function handleToRemoveRequest() {
+    if(rowsSelected.length < 1){
+      alert("Selecione um ou mais pedidos para excluir.");
+      return
+    }
+
+    let ids = '';
+    rowsSelected.forEach(e => {
+      ids = ids + e.id + ', ';
+    })
+
+    if(window.confirm('Deseja excluir o(s) pedido(s) '+ ids + '?')) {
+      RequestController.delete(rowsSelected).then(() => {
+        alert("Pedidos excluídos com sucesso!!!");
+        setSearchQuery(' ');
+        setSearchQuery('');
+      });
     }
   }
 
@@ -42,19 +64,22 @@ export function Requests() {
       
       <main>
         <div className="section">
-          <Button onClick={handleToNewRequest} isOutlined>+<b>Novo Pedido</b></Button>
-          <form onSubmit={handleToSearch}>
+          <div>
+            <Button onClick={handleToNewRequest} isOutlined>✛<b>Novo Pedido</b></Button>
+            <Button onClick={handleToEditRequest} isOutlined>✎<b>Editar Pedido</b></Button>
+            <Button onClick={handleToRemoveRequest} isOutlined>✕<b>Excluir Pedido</b></Button>
+          </div>
+          <form>
             <input 
               type="text" 
-              placeholder="Pesquise um pedido pelo código..." 
+              placeholder="Pesquise um pedido pelo nome..." 
               onChange={event => setSearchQuery(event.target.value)} value={searchQuery}
             />
-            <Button type="submit">Pesquisar</Button>
           </form>
         </div>
         
         <div className="table">
-          <DataGrid rows={rowsRequest} columns={columns} pageSize={9} checkboxSelection />
+          <DataGrid rows={rowsRequest} columns={columns} pageSize={8} checkboxSelection onSelectionModelChange={e => handleToSelectedRequest(e)}/>
         </div>
       </main>
     </div>
