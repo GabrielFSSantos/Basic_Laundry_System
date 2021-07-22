@@ -7,7 +7,7 @@ type TableProps = {
   search: string;
 }
 
-type Columns = {
+type Column = {
   field: string;
   headerName?: string;
   description?: string;
@@ -22,17 +22,14 @@ type Columns = {
   filterable?: boolean;
 }
 
-export type RowClient = { 
+export type Row = { 
   id: string;
-  cpf?: string;
   name?: string;
+
+  cpf?: string;
   phone?: string; 
   email?: string;
-}
 
-export type RowRequest = { 
-  id: string;
-  name?: string;
   weight?: string;
   price?: string;
   isPaid?: boolean;
@@ -40,9 +37,8 @@ export type RowRequest = {
 }
 
 export function useTable({type, search}: TableProps) {
-  const [columns, setColumns] = useState<Columns[]>([]);
-  const [rowsClient, setRowsClient] = useState<RowClient[]>([]);
-  const [rowsRequest, setRowsRequest] = useState<RowRequest[]>([]);
+  const [columns, setColumns] = useState<Column[]>([]);
+  const [rows, setRows] = useState<Row[]>([]);
 
   useEffect(() => {
     if(type === 'clients') {
@@ -54,10 +50,10 @@ export function useTable({type, search}: TableProps) {
       ]);
       ClientController.read().then((clients) => { if(clients){
         if(search.trim() === '') {
-          setRowsClient(clients);
+          setRows(clients);
         }
         else {
-          setRowsClient(clients.filter((client) => {
+          setRows(clients.filter((client) => {
             if(client.name){
               return client.name.includes(search);
             }
@@ -78,10 +74,10 @@ export function useTable({type, search}: TableProps) {
       
       RequestController.read().then((requests) => { if(requests){
         if(search.trim() === '') {
-          setRowsRequest(requests);
+          setRows(requests);
         }
         else {
-          setRowsRequest(requests.filter((request) => {
+          setRows(requests.filter((request) => {
             if(request.name){
               return request.name.includes(search);
             }
@@ -92,5 +88,5 @@ export function useTable({type, search}: TableProps) {
     }
   }, [type, search]);
 
-  return {columns, rowsClient, rowsRequest};
+  return {columns, rows};
 }
