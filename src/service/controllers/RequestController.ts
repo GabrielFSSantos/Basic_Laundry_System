@@ -1,27 +1,38 @@
 import { Request } from '../models/Request';
-import { requests } from '../data/data.json';
+import { Client } from '../models/Client';
+import { requests, clients } from '../data/data.json';
 
 export default {
   async create(request: Request) {
     try {
-      let dados: Request[] = [];
-      const storage = localStorage.getItem('requests');
+      let requestsData: Request[] = [];
+      let clientsData: Client[] = [];
+      const requestsStorage = localStorage.getItem('requests');
+      const clientsStorage = localStorage.getItem('clients');
 
-      if(storage){
-        dados = JSON.parse(storage);
+      if(requestsStorage){
+        requestsData = JSON.parse(requestsStorage);
       }
       else {
         localStorage.setItem('requests', JSON.stringify(requests));
-        dados = JSON.parse(JSON.stringify(requests));
+        requestsData = JSON.parse(JSON.stringify(requests));
       }
 
-      if(dados.find((e) => e.cpf === request.cpf)){
-        alert("error Request Exists");
+      if(clientsStorage){
+        clientsData = JSON.parse(clientsStorage);
+      }
+      else {
+        localStorage.setItem('clients', JSON.stringify(clients));
+        clientsData = JSON.parse(JSON.stringify(clients));
+      }
+
+      if(!(clientsData.find((e) => e.cpf === request.cpf))){
+        alert("error Client Exists");
         return
       }
 
-      dados.push(request);
-      localStorage.setItem('requests', JSON.stringify(dados));
+      requestsData.push(request);
+      localStorage.setItem('requests', JSON.stringify(requestsData));
       return request;
       
     }catch (error) {
@@ -31,15 +42,15 @@ export default {
 
   async read() {
     try {
-      const storage = localStorage.getItem('requests');
-      if(storage){
-        const dados: Request[] = JSON.parse(storage);
-        return dados;
+      const requestsStorage = localStorage.getItem('requests');
+      if(requestsStorage){
+        const requestsData: Request[] = JSON.parse(requestsStorage);
+        return requestsData;
       }
       else {
         localStorage.setItem('requests', JSON.stringify(requests));
-        const dados: Request[] = JSON.parse(JSON.stringify(requests));
-        return dados;
+        const requestsData: Request[] = JSON.parse(JSON.stringify(requests));
+        return requestsData;
       }
     } catch (error) {
       alert("Could not list.\n" + error);
@@ -48,22 +59,22 @@ export default {
   
   async update(request: Request) {
     try {
-      let dados: Request[] = [];
-      const storage = localStorage.getItem('requests');
+      let requestsData: Request[] = [];
+      const requestsStorage = localStorage.getItem('requests');
 
-      if(storage){
-        dados = JSON.parse(storage);
+      if(requestsStorage){
+        requestsData = JSON.parse(requestsStorage);
       }
       else {
         localStorage.setItem('requests', JSON.stringify(requests));
-        dados = JSON.parse(JSON.stringify(requests));
+        requestsData = JSON.parse(JSON.stringify(requests));
       }
 
-      const index = dados.findIndex((e) => e.id === request.id);
+      const index = requestsData.findIndex((e) => e.id === request.id);
 
       if(index >= 0){
-        dados[index] = request;
-        localStorage.setItem('requests', JSON.stringify(dados));
+        requestsData[index] = request;
+        localStorage.setItem('requests', JSON.stringify(requestsData));
         return request;
       }
       else {
@@ -78,22 +89,22 @@ export default {
   
   async delete(elements: {id: string}[]) {
     try {
-      let dados: Request[] = [];
-      const storage = localStorage.getItem('requests');
+      let requestsData: Request[] = [];
+      const requestsStorage = localStorage.getItem('requests');
 
-      if(storage){
-        dados = JSON.parse(storage);
+      if(requestsStorage){
+        requestsData = JSON.parse(requestsStorage);
       }
       else {
         localStorage.setItem('requests', JSON.stringify(requests));
-        dados = JSON.parse(JSON.stringify(requests));
+        requestsData = JSON.parse(JSON.stringify(requests));
       }
 
       elements.map((element) => {
-        const index = dados.findIndex((e) => e.id === element.id);
+        const index = requestsData.findIndex((e) => e.id === element.id);
         if(index >= 0){
-          dados.splice(index, 1);
-          localStorage.setItem('requests', JSON.stringify(dados));
+          requestsData.splice(index, 1);
+          localStorage.setItem('requests', JSON.stringify(requestsData));
         }
         else {
           alert(`error Request ${index} no exists!`);
@@ -106,18 +117,18 @@ export default {
 
   async show(id: string) {
     try {
-      let dados: Request[] = [];
-      const storage = localStorage.getItem('requests');
+      let requestsData: Request[] = [];
+      const requestsStorage = localStorage.getItem('requests');
 
-      if(storage){
-        dados = JSON.parse(storage);
+      if(requestsStorage){
+        requestsData = JSON.parse(requestsStorage);
       }
       else {
         localStorage.setItem('requests', JSON.stringify(requests));
-        dados = JSON.parse(JSON.stringify(requests));
+        requestsData = JSON.parse(JSON.stringify(requests));
       }
 
-      const request = dados.find((e) => e.id === id);
+      const request = requestsData.find((e) => e.id === id);
 
       if(request){
         return request;
