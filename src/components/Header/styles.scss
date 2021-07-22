@@ -1,12 +1,15 @@
 #content {
+  width: 90rem;
+  margin: 0 auto;
+
   header {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    margin: 100px 124px 0px 124px;
+    margin: 4rem 0rem 2rem 4rem;
 
     h2 {
-      margin-top: 24px;
+      margin-top: 1.5rem;
     }
   }
 
@@ -14,10 +17,9 @@
     display: flex;
     align-items: center;
 
-    height: 2px;
+    height: 0.1rem;
     background: #047F9F;
-
-    margin: 32px 64px;
+    margin-bottom: 4rem;
   }
 }
 

@@ -69,13 +69,11 @@ export function Clients() {
             <Button onClick={handleToEditClient} isOutlined>✎<b>Editar Cliente</b></Button>
             <Button onClick={handleToRemoveClient} isOutlined>✕<b>Excluir Cliente</b></Button>
           </div>
-          <form>
-            <input 
+          <input 
               type="text" 
               placeholder="Pesquise um cliente pelo nome..." 
               onChange={event => setSearchQuery(event.target.value)} value={searchQuery}
             />
-          </form>
         </div>
         
         <div className="table">
