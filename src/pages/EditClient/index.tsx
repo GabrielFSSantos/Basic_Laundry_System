@@ -50,7 +50,7 @@ export function EditClient() {
         history.push('/clients');
       }
     });
-  },[]);
+  },[params, history]);
 
   function handleEditClient(){
     
