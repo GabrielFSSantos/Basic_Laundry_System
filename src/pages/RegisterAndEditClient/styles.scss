@@ -1,0 +1,36 @@
+#register-and-edit-client {
+  main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 84rem;
+    margin: 0 auto;
+
+    .board {
+      margin-bottom: 36px;
+      height: 38rem;
+      width: 100%;
+
+      border: 2px solid #047F9F;
+      border-radius: 16px;
+      
+      form {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0px 0px 64px;
+
+        h2 {
+          font-size: 24px;
+          margin: 48px 0px 0px 8px;
+        }
+
+        .Infos {
+          display: flex;
+          div {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
