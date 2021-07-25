@@ -104,7 +104,7 @@ export default {
     }
   },
 
-  async show(id: string) {
+  async show(code: string, search: string) {
     try {
       let clientsData: Client[] = [];
       const storage = localStorage.getItem('clients');
@@ -117,13 +117,21 @@ export default {
         clientsData = JSON.parse(JSON.stringify(clients));
       }
 
-      const client = clientsData.find((e) => e.id === id);
+      let client;
+      switch (search) {
+        case 'id':
+          client = clientsData.find((e) => e.id === code);
+          break;
+        case 'cpf':
+          client = clientsData.find((e) => e.cpf === code);
+          break;
+      }
 
       if(client){
         return client;
       }
       else{
-        alert("error Client Exists");
+        alert("error Client don't Exists");
         return
       }
     } catch (error) {

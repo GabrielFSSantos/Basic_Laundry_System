@@ -1,4 +1,4 @@
-#content {
+#toggle {
   /* The switch - the box around the slider */
   .switch {
     position: relative;
@@ -63,7 +63,7 @@
   }
 
   .title {
-    font-weight: 500;
+    font-weight: bold;
     font-size: 1rem;
     margin-bottom: 0.5rem;
   }

@@ -30,8 +30,8 @@ export type Row = {
   phone?: string; 
   email?: string;
 
-  weight?: string;
-  price?: string;
+  weight?: number;
+  price?: number;
   isPaid?: boolean;
   status?: string;
 }
@@ -64,12 +64,11 @@ export function useTable({type, search}: TableProps) {
     } 
     else if(type === 'requests') {
       setColumns([
-        { field: 'id', headerName: 'Código', width: 200 },
-        { field: 'name', headerName: 'Nome', width: 200 },
-        { field: 'weight', headerName: 'Peso', width: 200 },
-        { field: 'price', headerName: 'Preço', width: 200 },
-        { field: 'isPaid', headerName: 'Pago', width: 200 },
-        { field: 'status', headerName: 'Status', width: 200 },
+        { field: 'name', headerName: 'Nome', width: 240 },
+        { field: 'weight', headerName: 'Peso (Kg)', width: 240 },
+        { field: 'price', headerName: 'Preço (R$)', width: 240 },
+        { field: 'isPaid', headerName: 'Pago', width: 240 },
+        { field: 'status', headerName: 'Status', width: 240 },
       ]);
       
       RequestController.read().then((requests) => { if(requests){

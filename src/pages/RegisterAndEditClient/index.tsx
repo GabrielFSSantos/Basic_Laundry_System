@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 
 import { Header } from '../../components/Header';
-import { LabelInput } from '../../components/LabelInput';
+import { LabelAndChange } from '../../components/LabelAndChange';
 import { Button } from '../../components/Button';
 
 import { Client } from '../../service/models/Client';
@@ -34,7 +34,7 @@ export function RegisterAndEditClient() {
 
   useEffect(() => {
     if(params.id){
-      ClientController.show(params.id).then((dados) => {
+      ClientController.show(params.id, 'id').then((dados) => {
         if (dados) {
           setId(dados.id);
           setName(dados.name);
@@ -64,18 +64,18 @@ export function RegisterAndEditClient() {
       district !== '' && complement !== '') {
         
       const client: Client = {
-      id: id === '' ? uuid() : id,
-      name,
-      cpf,
-      email,
-      phone,
-      cep,
-      city,
-      state,
-      street,
-      number,
-      district,
-      complement
+        id: id === '' ? uuid() : id,
+        name,
+        cpf,
+        email,
+        phone,
+        cep,
+        city,
+        state,
+        street,
+        number,
+        district,
+        complement
       }
 
       if(params.id) {
@@ -105,7 +105,8 @@ export function RegisterAndEditClient() {
           <form>
             <div className="Infos">
               <div>
-                <LabelInput 
+                <LabelAndChange
+                  input 
                   name="Nome"
                   type="text" 
                   onChange={event => setName(event.target.value)}
@@ -113,7 +114,8 @@ export function RegisterAndEditClient() {
                   value={name !== '' ? name : undefined}
                 />
 
-                <LabelInput 
+                <LabelAndChange
+                  input 
                   name="E-mail"
                   type="text" 
                   onChange={event => setEmail(event.target.value)}
@@ -123,7 +125,8 @@ export function RegisterAndEditClient() {
               </div>
 
               <div>
-                <LabelInput 
+                <LabelAndChange
+                  input 
                   name="CPF"
                   type="text" 
                   onChange={event => setCpf(event.target.value)}
@@ -131,7 +134,8 @@ export function RegisterAndEditClient() {
                   value={cpf !== '' ? cpf : undefined}
                 />
 
-                <LabelInput 
+                <LabelAndChange
+                  input 
                   name="Telefone"
                   type="text" 
                   onChange={event => setPhone(event.target.value)}
@@ -144,7 +148,8 @@ export function RegisterAndEditClient() {
             <h2>Endereço</h2>
             <div className="Infos">
               <div>
-                <LabelInput 
+                <LabelAndChange
+                  input 
                   name="CEP"
                   type="text" 
                   onChange={event => setCep(event.target.value)}
@@ -152,7 +157,8 @@ export function RegisterAndEditClient() {
                   value={cep !== '' ? cep : undefined}
                 />
 
-                <LabelInput 
+                <LabelAndChange
+                  input 
                   name="Rua"
                   type="text" 
                   onChange={event => setStreet(event.target.value)}
@@ -160,7 +166,8 @@ export function RegisterAndEditClient() {
                   value={street !== '' ? street : undefined}
                 />
 
-                <LabelInput 
+                <LabelAndChange
+                  input 
                   name="Complemento"
                   type="text" 
                   onChange={event => setComplement(event.target.value)}
@@ -170,7 +177,8 @@ export function RegisterAndEditClient() {
               </div>
 
               <div>
-                <LabelInput 
+                <LabelAndChange
+                  input 
                   name="Cidade"
                   type="text" 
                   onChange={event => setCity(event.target.value)}
@@ -178,7 +186,8 @@ export function RegisterAndEditClient() {
                   value={city !== '' ? city : undefined}
                 />
 
-                <LabelInput 
+                <LabelAndChange
+                  input 
                   name="Número"
                   type="text" 
                   onChange={event => setNumber(parseFloat(event.target.value))}
@@ -188,7 +197,8 @@ export function RegisterAndEditClient() {
               </div>
 
               <div>
-                <LabelInput 
+                <LabelAndChange
+                  input 
                   name="Estado"
                   type="text" 
                   onChange={event => setState(event.target.value)}
@@ -196,7 +206,8 @@ export function RegisterAndEditClient() {
                   value={state !== '' ? state : undefined}
                 />
 
-                <LabelInput 
+                <LabelAndChange
+                  input 
                   name="Bairro"
                   type="text" 
                   onChange={event => setDistrict(event.target.value)}

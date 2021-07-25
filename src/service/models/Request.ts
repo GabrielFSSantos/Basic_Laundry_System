@@ -2,11 +2,11 @@ export class Request {
   id!: string;
   name!: string;
   cpf!: string;
-  weight!: string;
+  weight!: number;
   type!: string;
   isDelivery!: boolean;
-  price!: string;
-  date!: number;
+  price!: number;
+  date!: string;
   isPaid!: boolean;
   status!: string;
 }
