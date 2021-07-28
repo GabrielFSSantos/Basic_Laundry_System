@@ -64,11 +64,12 @@ export function useTable({type, search}: TableProps) {
     } 
     else if(type === 'requests') {
       setColumns([
-        { field: 'name', headerName: 'Nome', width: 240 },
-        { field: 'weight', headerName: 'Peso (Kg)', width: 240 },
-        { field: 'price', headerName: 'Preço (R$)', width: 240 },
-        { field: 'isPaid', headerName: 'Pago', width: 240 },
-        { field: 'status', headerName: 'Status', width: 240 },
+        { field: 'date', headerName: 'Data', width: 210 },
+        { field: 'name', headerName: 'Nome', width: 210 },
+        { field: 'weight', headerName: 'Peso (Kg)', width: 210 },
+        { field: 'price', headerName: 'Preço (R$)', width: 210 },
+        { field: 'isPaid', headerName: 'Pago', width: 210 },
+        { field: 'status', headerName: 'Status', width: 210 },
       ]);
       
       RequestController.read().then((requests) => { if(requests){

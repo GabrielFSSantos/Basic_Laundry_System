@@ -4,7 +4,7 @@ import { Sidebar } from './components/Sidebar';
 import { Clients } from './pages/Clients';
 import { RegisterAndEditClient } from './pages/RegisterAndEditClient';
 import { Requests } from './pages/Requests';
-import { RegisterRequest } from './pages/RegisterRequest';
+import { RegisterAndEditRequest } from './pages/RegisterAndEditRequest';
 import { Costs } from './pages/Costs';
 
 function App() {
@@ -16,7 +16,8 @@ function App() {
             <Route path="/new/client" component={RegisterAndEditClient} />
             <Route path="/edit/client/:id" component={RegisterAndEditClient} />
             <Route path="/requests" component={Requests} />
-            <Route path="/new/request" component={RegisterRequest} />
+            <Route path="/new/request" component={RegisterAndEditRequest} />
+            <Route path="/edit/request/:id" component={RegisterAndEditRequest} />
             <Route path="/costs" component={Costs} />
           </Sidebar>
         </Switch>
