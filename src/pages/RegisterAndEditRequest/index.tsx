@@ -6,6 +6,7 @@ import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { LabelAndChange } from '../../components/LabelAndChange';
 import { Toggle } from '../../components/Toggle';
+import { Modal } from '../../components/Modal';
 
 import { Request } from '../../service/models/Request';
 import ClientController from '../../service/controllers/ClientController';
@@ -33,6 +34,10 @@ export function RegisterAndEditRequest() {
   const [isPaid, setIsPaid] = useState(Boolean);
   const [isDelivery, setIsDelivery] = useState(Boolean);
 
+  const [alertFullFields, setAlertFullFields] = useState(false);
+  const [alertRegistered, setAlertRegistered] = useState(false);
+  const [alertEdited, setAlertEdited] = useState(false);
+
   useEffect(() => {
     if(params.id){
       RequestController.show(params.id).then((dados) => {
@@ -58,8 +63,6 @@ export function RegisterAndEditRequest() {
     }
   }, [weight, type, isDelivery, params.id, history]);
 
-  console.log(name, type, isDelivery, isPaid);
-
   function verifyCpf(handleCpf: string){
     if(handleCpf.length > 10 ){
       ClientController.show(handleCpf, 'cpf').then((dados) => { 
@@ -82,26 +85,24 @@ export function RegisterAndEditRequest() {
         type,
         isDelivery,
         price,
-        date: date === '' ? Date.now.toString() : date,
+        date: date === '' ? new Date(Date.now()).toLocaleDateString() : date,
         isPaid,
         status,
       }
 
       if(params.id) {
         RequestController.update(request).then((dados) => {
-          alert("Pedido "+dados?.name+" Editado com sucesso!!!");
-          history.push('/requests');
+          setAlertEdited(true);
         });
       }
       else {
         RequestController.create(request).then((dados) => {
-          alert("Pedido "+dados?.name+" cadastrado com sucesso!!!");
-          history.push('/requests');
+          setAlertRegistered(true);
         });
       }
     }
     else{
-      alert("Preencha todos os campos");
+      setAlertFullFields(true);
     }
   }
 
@@ -186,6 +187,42 @@ export function RegisterAndEditRequest() {
         </div>
         <Button onClick={handleChangeRequest}>{params.id ? "Salvar Alterações" : "Cadastrar Pedido"}</Button>
       </main>
+                  
+      {alertFullFields ? 
+        <Modal 
+          alert 
+          title="Alerta ao cadastrar pedido" 
+          handleToCancel={() => {setAlertFullFields(false)}}
+        >
+          Preencha todos os campos!
+        </Modal> 
+      : false}
+
+      {alertRegistered ? 
+        <Modal 
+          alert 
+          title="Pedido Cadastrado"
+          handleToCancel={() => {
+            setAlertRegistered(false); 
+            history.push('/requests');
+          }}
+        >
+          {`Pedido ${name} cadastrado com sucesso!`}
+        </Modal> 
+      : false}
+
+      {alertEdited ? 
+        <Modal 
+          alert 
+          title="Pedido Editado"
+          handleToCancel={() => {
+            setAlertEdited(false);
+            history.push('/requests');
+          }}
+        >
+          {`Pedido ${name} editado com sucesso!!!`}
+        </Modal> 
+      : false}
     </div>
   );
 }

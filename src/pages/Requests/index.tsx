@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Header } from '../../components/Header';
+import { Modal } from '../../components/Modal';
 import { PageCRUD } from '../../components/PageCRUD';
 import { Row } from '../../hooks/useTable';
 
@@ -11,39 +12,34 @@ export function Requests() {
   const history = useHistory();
   const [rowsSelected, setRowsSelected] = useState<Row[]>([]);
 
+  const [justOneRequest, setJustOneRequest] = useState(false);
+  const [selectOneRequest, setSelectOneRequest] = useState(false);
+  const [selectMoreRequest, setSelectMoreRequest] = useState(false);
+  const [confirmExcludedRequest, setConfirmExcludedRequest] = useState(false);
+  const [excludedRequest, setExcludedRequest] = useState(false);
+
   async function handleToNewRequest() {
     history.push('/new/request');
   }
   
   async function handleToEditRequest() {
     if(rowsSelected.length > 1){
-      alert("Não é possível editar mais de um pedido por vez.");
+      setJustOneRequest(true);
       return
     }
     if(rowsSelected.length < 1){
-      alert("Selecione um pedido para editar.");
+      setSelectOneRequest(true);
       return
     }
-
     history.push(`/edit/request/${rowsSelected[0].id}`);
   }
 
   async function handleToRemoveRequest() {
     if(rowsSelected.length < 1){
-      alert("Selecione um ou mais pedidos para excluir.");
+      setSelectMoreRequest(true);
       return
     }
-
-    let ids = '';
-    rowsSelected.forEach(e => {
-      ids = ids + e.id + ', ';
-    })
-
-    if(window.confirm('Deseja excluir o(s) pedido(s) '+ ids + '?')) {
-      RequestController.delete(rowsSelected).then(() => {
-        alert("Pedidos excluídos com sucesso!!!");
-      });
-    }
+    setConfirmExcludedRequest(true);
   }
 
   return(
@@ -57,6 +53,62 @@ export function Requests() {
         handleToRemove={handleToRemoveRequest}
         setRowsSelected={setRowsSelected}
       />
+
+      {justOneRequest ? 
+        <Modal 
+          alert 
+          title="Alerta ao editar pedido" 
+          handleToCancel={() => {setJustOneRequest(false)}}
+        >
+          Não é possível editar mais de um pedido por vez.
+        </Modal> 
+      : false}
+
+      {selectOneRequest ? 
+        <Modal 
+          alert 
+          title="Alerta ao editar pedido" 
+          handleToCancel={() => {setSelectOneRequest(false)}}
+        >
+          Selecione um pedido para editar.
+        </Modal> 
+      : false}
+
+      {selectMoreRequest ? 
+        <Modal 
+          alert 
+          title="Alerta ao excluir pedido" 
+          handleToCancel={() => {setSelectMoreRequest(false)}}
+        >
+          Selecione um ou mais pedidos para excluir.
+        </Modal> 
+      : false}
+
+      {confirmExcludedRequest ? 
+        <Modal 
+          confirm 
+          title="Alerta ao excluir pedido" 
+          handleToCancel={() => {setConfirmExcludedRequest(false)}}
+          handleToConfirm={() => {
+            setConfirmExcludedRequest(false);
+            RequestController.delete(rowsSelected).then(() => {
+              setExcludedRequest(true);
+            });
+          }}
+        >
+          {`Deseja excluir o(s) pedido(s) ${rowsSelected.map(e => ' '+e.name)} ?`}
+        </Modal> 
+      : false}
+
+      {excludedRequest ? 
+        <Modal 
+          alert 
+          title="Alerta ao excluir pedido" 
+          handleToCancel={() => {setExcludedRequest(false)}}
+        >
+          Pedidos excluídos com sucesso!
+        </Modal> 
+      : false}
     </div>
   );
 }

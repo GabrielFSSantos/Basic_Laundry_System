@@ -20,6 +20,10 @@
       border-radius: 0.5rem;
     }
 
+    input:disabled , select:disabled {
+      color: #898989;
+    }
+
     span {
       width: 8rem;
       padding: 1rem;
