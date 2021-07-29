@@ -29,10 +29,10 @@ export function useTable({type, search}: TableProps) {
   useEffect(() => {
     if(type === 'clients') {
       setColumns([
-        { selector: 'name', name: 'Nome', sortable: true},
-        { selector: 'cpf', name: 'CPF', sortable: true},
-        { selector: 'phone', name: 'Telefone', sortable: true},
-        {selector: 'email', name: 'Email', sortable: true}
+        { selector: row => 'name', name: 'Nome', sortable: true, format: row => {return row.name.toString()}},
+        { selector: row => 'cpf', name: 'CPF', sortable: true, format: row => {return row.cpf.toString()}},
+        { selector: row => 'phone', name: 'Telefone', sortable: true, format: row => {return row.phone.toString()}},
+        { selector: row => 'email', name: 'Email', sortable: true, format: row => {return row.email.toString()}}
       ]);
       ClientController.read().then((clients) => { if(clients){
         if(search.trim() === '') {
@@ -50,12 +50,12 @@ export function useTable({type, search}: TableProps) {
     } 
     else if(type === 'requests') {
       setColumns([
-        { selector: 'date', name: 'Data', sortable: true},
-        { selector: 'name', name: 'Nome', sortable: true},
-        { selector: 'weight', name: 'Peso', sortable: true, format: row => {return row.weight.toString().concat(' Kg')}},
-        { selector: 'price', name: 'Preço', sortable: true, format: row => {return row.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}},
-        { selector: 'isPaid', name: 'Pago', sortable: true, format: row => {return row.isPaid ? 'Sim' : 'Não'}},
-        { selector: 'status', name: 'Status', sortable: true, format: row => {
+        { selector: row => 'date', name: 'Data', sortable: true, format: row => {return row.date.toString()}},
+        { selector: row => 'name', name: 'Nome', sortable: true, format: row => {return row.name.toString()}},
+        { selector: row => 'weight', name: 'Peso', sortable: true, format: row => {return row.weight.toString().concat(' Kg')}},
+        { selector: row => 'price', name: 'Preço', sortable: true, format: row => {return row.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}},
+        { selector: row => 'isPaid', name: 'Pago', sortable: true, format: row => {return row.isPaid ? 'Sim' : 'Não'}},
+        { selector: row => 'status', name: 'Status', sortable: true, format: row => {
           switch (row.status) {
             case 'queue':
               return 'Na Fila';

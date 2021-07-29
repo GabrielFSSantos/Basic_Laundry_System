@@ -1,4 +1,14 @@
 {
+  "cost": {
+    "expenses": 4000,
+    "profit": 1520,
+    "washingMachine": 60,
+    "washingHand": 80,
+    "washingDry": 100,
+    "costMedium": 5520,
+    "weightMinimum": 92
+  },
+
   "clients": [
     {
       "id": "DRH96KVD4PS",

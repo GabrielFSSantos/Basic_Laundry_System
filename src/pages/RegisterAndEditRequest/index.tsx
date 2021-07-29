@@ -59,7 +59,7 @@ export function RegisterAndEditRequest() {
       });
     }
     else {
-      setPrice(CalculatePrice({type, weight, isDelivery}));
+      CalculatePrice({type, weight, isDelivery}).then((dados) => {setPrice(dados)});
     }
   }, [weight, type, isDelivery, params.id, history]);
 
