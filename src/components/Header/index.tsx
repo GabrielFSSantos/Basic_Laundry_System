@@ -40,6 +40,7 @@ export function Header({title}: HeaderProps) {
             AdministratorController.logout().then(result => {
               if(result) {
                 history.push('/');
+                window.location.reload();
               }
             });
           }}

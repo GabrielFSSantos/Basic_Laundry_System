@@ -32,6 +32,7 @@ export function Login() {
       AdministratorController.login(admin).then(result => {
         if(result){
           history.push('/clients');
+          window.location.reload();
         }
         else {
           setIncorrectDados(true);
