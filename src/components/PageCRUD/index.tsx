@@ -27,7 +27,7 @@ export function PageCRUD({title, handleToNew, handleToEdit, handleToRemove, setR
   const customStyles = {
     headCells: {
       style: {
-        fontSize: '1.4rem',
+        fontSize: '1.2rem',
         fontWeight: 500,
         color: '#000000',
         minHeight: '4rem',

@@ -8,7 +8,7 @@ import { Row } from '../../hooks/useTable';
 
 import RequestController from '../../service/controllers/RequestController';
 
-export function Requests() {
+export function ReadAndExcludeRequest() {
   const history = useHistory();
   const [rowsSelected, setRowsSelected] = useState<Row[]>([]);
 
@@ -46,7 +46,7 @@ export function Requests() {
     <div>
       <Header title="Pedidos"/>
 
-      <PageCRUD 
+      <PageCRUD
         title="requests"
         handleToNew={handleToNewRequest}
         handleToEdit={handleToEditRequest}
@@ -104,7 +104,10 @@ export function Requests() {
         <Modal 
           alert 
           title="Alerta ao excluir pedido" 
-          handleToCancel={() => {setExcludedRequest(false)}}
+          handleToCancel={() => {
+            setExcludedRequest(false)
+            window.location.reload();
+          }}
         >
           Pedidos excluídos com sucesso!
         </Modal> 

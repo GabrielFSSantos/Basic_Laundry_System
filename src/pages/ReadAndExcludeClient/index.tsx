@@ -8,7 +8,7 @@ import { Modal } from '../../components/Modal';
 
 import ClientController from '../../service/controllers/ClientController';
 
-export function Clients() {
+export function ReadAndExcludeClient() {
   const history = useHistory();
   const [rowsSelected, setRowsSelected] = useState<Row[]>([]);
 
