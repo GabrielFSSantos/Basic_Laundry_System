@@ -26,7 +26,7 @@ export function RegisterAndEditRequest() {
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [cpf, setCpf] = useState('');
-  const [status, setStatus] = useState('Na Fila');
+  const [status, setStatus] = useState('queue');
   const [date, setDate] = useState('');
   const [type, setType] = useState('machine');
   const [price, setPrice] = useState(0);
