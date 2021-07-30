@@ -2,7 +2,7 @@
 
 # Basic_Laundry_System
 ![Developer](https://img.shields.io/badge/GabrielFSSantos-Basic__Laundry__SystemPrivate-blue)
-[![licence mit](https://img.shields.io/github/license/GabrielFSSantos/Basic_Laundry_System)](https://github.com/GabrielFSSantos/Basic_Laundry_System/blob/main/LICENSE)
+[![GitHub](https://img.shields.io/github/license/GabrielFSSantos/Basic_Laundry_System?style=plastic)](https://github.com/GabrielFSSantos/Basic_Laundry_System/blob/main/LICENSE)
 
 <h1 align="center">
     <img alt="Basic_Laundry_System" src="./src/assets/apresProject.png"/>
