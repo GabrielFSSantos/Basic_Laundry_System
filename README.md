@@ -5,13 +5,21 @@
 [![licence mit](https://img.shields.io/github/license/GabrielFSSantos/Basic_Laundry_System)](https://github.com/GabrielFSSantos/Basic_Laundry_System/blob/main/LICENSE)
 
 <h1 align="center">
-    <img alt="Basic_Laundry_System" src="./src/assets/apres.png"/>
+    <img alt="Basic_Laundry_System" src="./src/assets/apresProject.png"/>
 </h1>
 
 ### Este repositório é referente ao front-end da aplicação.
 
 > :wrench:  Projeto criado para estudar e praticar conhecimentos de programação e para fins didáticos. <br><br>
-> :books: Basic Laundry System vai lhe ajudar a gerenciar a sua lavanderia de forma mais rápida e efetiva. O mesmo conta com passibilidade de gerenciamento de clientes, pedidos e custos com adicional de entrega.
+> :books: Basic Laundry System vai lhe ajudar a gerenciar a sua lavanderia de forma mais rápida e efetiva. O mesmo conta com passibilidade de gerenciamento de clientes, pedidos e custos com adicional de entrega.<br><br>
+> :busts_in_silhouette: Queria dar os meus agradecimentos a [Samira Freitas](https://github.com/SamiraFreitas) que realizou o desenvolvimento de todo design e protótipo do projeto, como também contribuiu no desenvolvimento em React do mesmo.
+
+## Layout
+
+>🔖 Você pode visualizar o layout do projeto através do link abaixo:
+>
+>- [Layout Web](https://www.figma.com/file/rdFc8096UUnOuOpaaSLerv/Lavanderia) 
+>Lembrando que você precisa ter uma conta no [Figma](http://figma.com/).
 
 
 ## Requirements
@@ -43,7 +51,7 @@ yarn start
 > Caso tenha alguma dúvida confira este [guia de como contribuir no GitHub](https://github.com/firstcontributions/first-contributions)
 
 ## Tech
-> :space_invader:Softwares e tecnologias utilizadas para o desenvolvimento e uso do projeto:
+> :space_invader: Softwares e tecnologias utilizadas para o desenvolvimento e uso do projeto:
 >
 * [React] - Ferramenta utilizada para o desenvolvimento front-end.
 * [Node.js] - Ferramenta utilizada para o desenvolvimento back-end.
