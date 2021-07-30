@@ -12,7 +12,7 @@
 
 > :wrench:  Projeto criado para estudar e praticar conhecimentos de programação e para fins didáticos. <br><br>
 > :books: Basic Laundry System vai lhe ajudar a gerenciar a sua lavanderia de forma mais rápida e efetiva. O mesmo conta com passibilidade de gerenciamento de clientes, pedidos e custos com adicional de entrega.<br><br>
-> :busts_in_silhouette: Queria dar os meus agradecimentos a [Samira Freitas](https://github.com/SamiraFreitas) que realizou o desenvolvimento de todo design e protótipo do projeto, como também contribuiu no desenvolvimento em React do mesmo.
+> :busts_in_silhouette: Meus agradecimentos a [Samira Freitas](https://github.com/SamiraFreitas) que realizou o desenvolvimento de todo design e protótipo do projeto, como também contribuiu no desenvolvimento em React do mesmo.
 
 ## Layout
 
