@@ -19,6 +19,7 @@
 >🔖 Você pode visualizar o layout do projeto através do link abaixo:
 >
 >- [Layout Web](https://www.figma.com/file/rdFc8096UUnOuOpaaSLerv/Lavanderia) 
+>
 >Lembrando que você precisa ter uma conta no [Figma](http://figma.com/).
 
 
@@ -54,7 +55,7 @@ yarn start
 > :space_invader: Softwares e tecnologias utilizadas para o desenvolvimento e uso do projeto:
 >
 * [React] - Ferramenta utilizada para o desenvolvimento front-end.
-* [Node.js] - Ferramenta utilizada para o desenvolvimento back-end.
+* [Node.js] - Ferramenta base utilizada para o desenvolvimento geral.
 * [Typescript] - Ferramenta de tipagem utilizada para o desenvolvimento geral.
 * [VSCode] - Ótimo editor de texto.
 * [StackEdit] - Excelente editor de Markdown online.
