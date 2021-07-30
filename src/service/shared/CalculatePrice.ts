@@ -9,6 +9,7 @@ type PriceProps = {
 export async function CalculatePrice({type, weight, isDelivery}: PriceProps) {
 
   let priceKg = 0;
+  let deliveryCost = 0;
 
   await CostController.show().then((dados) => {
     if (dados) {
@@ -23,9 +24,13 @@ export async function CalculatePrice({type, weight, isDelivery}: PriceProps) {
           priceKg = dados.washingDry;
           break;
       }
+
+      if(isDelivery) {
+        deliveryCost = dados.deliveryCost;
+      }
     }
   });
 
-  const price = priceKg * (weight > 0 ? weight : 0) + (isDelivery ? 5 : 0);
+  const price = priceKg * (weight > 0 ? weight : 0) + (isDelivery ? deliveryCost : 0);
   return price;
 }

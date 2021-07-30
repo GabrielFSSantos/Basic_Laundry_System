@@ -6,4 +6,5 @@ export class Cost {
   washingDry!: number;
   costMedium!: number;
   weightMinimum!: number;
+  deliveryCost!: number;
 }

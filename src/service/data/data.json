@@ -12,7 +12,8 @@
     "washingHand": 80,
     "washingDry": 100,
     "costMedium": 5520,
-    "weightMinimum": 92
+    "weightMinimum": 92,
+    "deliveryCost": 5
   },
 
   "clients": [

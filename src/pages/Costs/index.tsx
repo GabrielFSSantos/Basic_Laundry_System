@@ -18,6 +18,7 @@ export function Costs() {
   const [washingDry, setWashingDry] = useState(0);
   const [costMedium, setCostMedium] = useState(0);
   const [weightMinimum, setWeightMinimum] = useState(0);
+  const [deliveryCost, setDeliveryCost] = useState(0);
 
   const [alertFullFields, setAlertFullFields] = useState(false);
   const [alertEdited, setAlertEdited] = useState(false);
@@ -32,6 +33,7 @@ export function Costs() {
         setWashingDry(dados.washingDry);
         setCostMedium(dados.costMedium);
         setWeightMinimum(dados.weightMinimum);
+        setDeliveryCost(dados.deliveryCost);
       }
     });
   }, []);
@@ -48,6 +50,7 @@ export function Costs() {
         washingMachine,
         washingHand,
         washingDry,
+        deliveryCost,
         costMedium: 0,
         weightMinimum: 0,
       }
@@ -67,7 +70,7 @@ export function Costs() {
 
   function handleSaveEditions() {
     if(expenses !== 0 && profit !== 0 && washingMachine !== 0 && washingHand !== 0 
-      && washingDry !== 0 && costMedium !== 0 && weightMinimum !== 0) {
+    && washingDry !== 0 && costMedium !== 0 && weightMinimum !== 0 && deliveryCost !== 0) {
       
       let data: Cost = {
         expenses,
@@ -76,7 +79,8 @@ export function Costs() {
         washingHand,
         washingDry,
         costMedium,
-        weightMinimum
+        weightMinimum,
+        deliveryCost
       }
 
       const cost = CalculateCosts(data);
@@ -117,6 +121,15 @@ export function Costs() {
                 placeholder="Digite o lucro desejado..."
                 onChange={event => setProfit(parseFloat(event.target.value) || 0)}
                 value={profit !== 0 ? profit : undefined}
+              />
+
+              <LabelAndChange
+                input 
+                name="Custo de entrega"
+                type="text" 
+                placeholder="Digite o custo de entrega..."
+                onChange={event => setDeliveryCost(parseFloat(event.target.value) || 0)}
+                value={deliveryCost !== 0 ? deliveryCost : undefined}
               />
             </div>
             
